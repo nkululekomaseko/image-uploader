@@ -1,7 +1,9 @@
 import React from "react";
+import Upload from "./components/Upload/Upload";
+import "./app.css";
 
 function App() {
-  return <div className="App">Hello</div>;
+  return <Upload />;
 }
 
 export default App;
