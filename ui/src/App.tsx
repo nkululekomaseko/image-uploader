@@ -5,8 +5,8 @@ import "./app.css";
 import iLink from "./pexels-blaque-x-863963.jpg";
 
 function App() {
-  // return <Upload />;
-  return <ImageLink imageLink={iLink} />;
+  return <Upload />;
+  // return <ImageLink imageLink={iLink} />;
 }
 
 export default App;
