@@ -1,12 +1,12 @@
 import React from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { CheckCircleSharp } from "@mui/icons-material";
+import { serverOrigin } from "../..";
 import "./ImageLink.css";
 
 const ImageLink = (props: { imageLink: string }): JSX.Element => {
   const { imageLink } = props;
 
-  // TODO - Refactor Base URL hardcoding
   return (
     <>
       <Box className="image-link-container">
@@ -16,21 +16,19 @@ const ImageLink = (props: { imageLink: string }): JSX.Element => {
           className="uploaded-image"
           src={
             !!imageLink
-              ? `http://localhost:5000/${imageLink}`
-              : "http://localhost:5000/api/image/dragDrop.svg"
+              ? `${serverOrigin}/${imageLink}`
+              : `${serverOrigin}/api/image/dragDrop.svg`
           }
           alt="Uploaded"
         />
 
         <Box className="link-container">
           <Typography noWrap className="link-text">
-            {`http://localhost:5000/${imageLink}`}
+            {`${serverOrigin}/${imageLink}`}
           </Typography>
           <Button
             onClick={() =>
-              navigator.clipboard.writeText(
-                `http://localhost:5000/${imageLink}`
-              )
+              navigator.clipboard.writeText(`${serverOrigin}/${imageLink}`)
             }
             className="copy-link-button"
             variant="contained"

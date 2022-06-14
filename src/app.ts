@@ -2,11 +2,9 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import multer from "multer";
 import path from "path";
-import config from "config";
 
 const app = express();
-const baseApiUrl = config.get<string>("baseApiUrl");
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -23,6 +21,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // app.use("/api/image", express.static(path.join(__dirname, "images")));
+
+app.use(express.static(path.join(__dirname, "..", "ui/build")));
 
 app.get("/api/image/:filename", (request: Request, response: Response) => {
   try {
@@ -52,5 +52,5 @@ app.post(
 );
 
 app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}`);
+  console.log(`Listening at port: ${port}`);
 });

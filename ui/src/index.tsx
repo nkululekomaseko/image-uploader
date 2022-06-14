@@ -4,6 +4,8 @@ import "./index.css";
 
 import App from "./App";
 
+export const serverOrigin: string = window.location.origin;
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );

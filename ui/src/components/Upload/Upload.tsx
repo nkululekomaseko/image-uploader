@@ -2,6 +2,7 @@ import { useCallback, useRef, useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import { Box, Button, Input, Typography } from "@mui/material";
 import dragDropImage from "../../images/dragDrop.svg";
+import { serverOrigin } from "../..";
 import "./Upload.css";
 
 const Upload = (props: {
@@ -15,7 +16,7 @@ const Upload = (props: {
     const formData = new FormData();
     formData.append("file", file);
     setLoading(true);
-    const response = await fetch("http://localhost:5000/api/image", {
+    const response = await fetch(`${serverOrigin}/api/image`, {
       method: "POST",
       body: formData,
     });
