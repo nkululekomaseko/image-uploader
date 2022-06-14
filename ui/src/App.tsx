@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Upload from "./components/Upload/Upload";
 import ImageLink from "./components/ImageLink/ImageLink";
-import "./app.css";
-import iLink from "./pexels-blaque-x-863963.jpg";
+import LinearProgressBar from "./components/LinearProgressBar/LinearProgressBar";
 
-function App() {
-  return <Upload />;
-  // return <ImageLink imageLink={iLink} />;
-}
+const App = (): JSX.Element => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [imageLink, setImageLink] = useState<string | undefined>(undefined);
+  return (
+    <>
+      {!imageLink && !loading && (
+        <Upload setLoading={setLoading} setLink={setImageLink} />
+      )}
+      {loading && <LinearProgressBar />}
+      {!!imageLink && !loading && <ImageLink imageLink={imageLink} />}
+    </>
+  );
+};
 
 export default App;

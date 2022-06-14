@@ -1,35 +1,38 @@
-import React, { useCallback, useRef, useState, useEffect } from "react";
-import Dropzone, { useDropzone } from "react-dropzone";
+import { useCallback, useRef, useState, useEffect } from "react";
+import { useDropzone } from "react-dropzone";
 import { Box, Button, Input, Typography } from "@mui/material";
 import dragDropImage from "../../images/dragDrop.svg";
 import "./Upload.css";
 
-const Upload = (): JSX.Element => {
+const Upload = (props: {
+  setLoading: (update: boolean) => void;
+  setLink: (update: string) => void;
+}): JSX.Element => {
+  const { setLoading, setLink } = props;
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
 
   const handleFileUpload = async (file: File) => {
     const formData = new FormData();
     formData.append("file", file);
+    setLoading(true);
     const response = await fetch("http://localhost:5000/api/image", {
       method: "POST",
       body: formData,
     });
     if (!!response.body) {
       const data = await response.json();
-      console.log(`Response from API: ${JSON.stringify(data, null, 2)}`);
+      setLink(data.imageLink);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
     if (!!uploadedFile) {
-      console.log("Sending api...");
       handleFileUpload(uploadedFile);
     }
   }, [uploadedFile]);
 
   const onDrop = useCallback((files: File[]) => {
-    // console.log(`Files: ${JSON.stringify(files, null, 2)}`);
-    console.log(URL.createObjectURL(files[0]));
     setUploadedFile(files[0]);
   }, []);
 

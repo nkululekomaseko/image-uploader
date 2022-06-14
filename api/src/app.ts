@@ -22,6 +22,8 @@ const storage = multer.diskStorage({
 // console.log(`Request: ${}`);
 const upload = multer({ storage: storage });
 
+// app.use("/api/image", express.static(path.join(__dirname, "images")));
+
 app.get("/api/image/:filename", (request: Request, response: Response) => {
   try {
     let filename: string = request.params.filename;
@@ -38,12 +40,7 @@ app.post(
     try {
       if (request.file)
         response.status(200).send({
-          imageLink: path.join(
-            baseApiUrl,
-            "api",
-            "image",
-            request.file.originalname
-          ),
+          imageLink: path.join("api", "image", request.file.originalname),
         });
       else {
         response.status(400);
