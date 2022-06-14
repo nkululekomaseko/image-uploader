@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+
+* {
+  font-family: "Poppins" !important;
+}
+
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  width: 300px;
+  height: 100px;
+  padding: 10%;
+}
+
+.title {
+  font-size: 18px !important;
+  letter-spacing: -0.035em !important;
+  color: #4f4f4f;
+}

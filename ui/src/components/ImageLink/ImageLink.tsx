@@ -1,21 +1,40 @@
 import React from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { CheckCircleSharp } from "@mui/icons-material";
-import dragDropImage from "../../images/dragDrop.svg";
 import "./ImageLink.css";
 
 const ImageLink = (props: { imageLink: string }): JSX.Element => {
+  const { imageLink } = props;
+
+  // TODO - Refactor Base URL hardcoding
   return (
     <>
       <Box className="image-link-container">
         <CheckCircleSharp style={{ color: "#219653", fontSize: "35px" }} />
         <Typography className="heading">Uploaded Successfully!</Typography>
-        <img src={props.imageLink} alt="Uploaded" />
+        <img
+          className="uploaded-image"
+          src={
+            !!imageLink
+              ? `http://localhost:5000/${imageLink}`
+              : "http://localhost:5000/api/image/dragDrop.svg"
+          }
+          alt="Uploaded"
+        />
+
         <Box className="link-container">
           <Typography noWrap className="link-text">
-            {props.imageLink}
+            {`http://localhost:5000/${imageLink}`}
           </Typography>
-          <Button className="copy-link-button" variant="contained">
+          <Button
+            onClick={() =>
+              navigator.clipboard.writeText(
+                `http://localhost:5000/${imageLink}`
+              )
+            }
+            className="copy-link-button"
+            variant="contained"
+          >
             Copy Link
           </Button>
         </Box>
