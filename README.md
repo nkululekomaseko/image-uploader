@@ -39,7 +39,7 @@ The app can be found here: "https://image-uploader-tool.herokuapp.com"
 
 ## Features
 
-This app was developed as a solution to a [DevChallenge](https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx). The [DevChallenge](https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx)
+This app was developed as a solution to a [DevChallenge](https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx).
 
 Challenge: Create an Image Uploader application. Use any front-end libraries of your choice. Create your API. Don’t look at the existing solution. Fulfill user stories below:
 
