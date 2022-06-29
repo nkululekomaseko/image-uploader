@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node dist/app.js",
+    "start": "node dist/app.js",
     "build": "tsc && cd ui && npm ci && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn app.ts && node dist"
