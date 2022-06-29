@@ -1,7 +1,6 @@
 import { useCallback, useRef, useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import { Box, Button, Input, Typography } from "@mui/material";
-import dragDropImage from "../../images/dragDrop.svg";
 import { serverOrigin } from "../..";
 import "./Upload.css";
 
@@ -31,6 +30,7 @@ const Upload = (props: {
     if (!!uploadedFile) {
       handleFileUpload(uploadedFile);
     }
+    // eslint-disable-next-line
   }, [uploadedFile]);
 
   const onDrop = useCallback((files: File[]) => {
@@ -57,7 +57,7 @@ const Upload = (props: {
         </Typography>
         <Box {...getRootProps()} className="img-container">
           <input {...getInputProps()} />
-          <img src={dragDropImage} alt="Drag &amp; Drop Here" />
+          <img src="dragDrop.svg" alt="Drag &amp; Drop Here" />
           <Typography className="drag-drop-text">
             Drag &amp; Drop your image here
           </Typography>

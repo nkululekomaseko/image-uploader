@@ -36,24 +36,16 @@ const urlToBuffer = async (url: string): Promise<Buffer> => {
 };
 
 app.use(express.static(path.join(__dirname, "..", "ui/build")));
-const file = createWriteStream("test.jpg");
 
 app.get(
-  "/api/image/:filename",
+  "/api/image/unsplash/:filename",
   async (request: Request, response: Response) => {
     try {
       const imageBuffer: Buffer = await urlToBuffer(
-        "https://res.cloudinary.com/nkululeko/image/upload/v1656358320/unsplash/bhivfj6styznkftgffgy.jpg"
+        cloudinary.url(`unsplash/${request.params.filename}.jpg`, {
+          secure: true,
+        })
       );
-
-      // console.log(
-      //   `Repsonse from cloudinary: ${JSON.stringify(
-      //     imageBuffer.toString("base64"),
-      //     null,
-      //     2
-      //   )}`
-      // );
-      let filename: string = request.params.filename;
       response.writeHead(200, { "Content-Type": "image/jpg" });
       response.write(imageBuffer);
       response.end();
@@ -63,24 +55,6 @@ app.get(
   }
 );
 
-// app.post(
-//   "/api/image",
-//   upload.single("file"),
-//   (request: Request, response: Response) => {
-//     try {
-//       if (request.file)
-//         response.status(200).send({
-//           imageLink: path.join("api", "image", request.file.originalname),
-//         });
-//       else {
-//         response.status(400);
-//       }
-//     } catch (error) {
-//       response.status(500).send(error);
-//     }
-//   }
-// );
-
 app.post(
   "/api/image",
   upload.single("file"),
@@ -89,7 +63,7 @@ app.post(
       if (request.file) {
         console.log(`File: ${JSON.stringify(request.file, null, 2)}`);
         response.status(200).send({
-          imageLink: path.join("api", "image", request.file.originalname),
+          imageLink: path.join("api", "image", request.file.filename),
         });
       } else {
         response.status(400);

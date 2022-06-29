@@ -6,6 +6,7 @@ import "./ImageLink.css";
 
 const ImageLink = (props: { imageLink: string }): JSX.Element => {
   const { imageLink } = props;
+  console.log(`imageLink: ${!!imageLink}`);
 
   return (
     <>
@@ -14,11 +15,7 @@ const ImageLink = (props: { imageLink: string }): JSX.Element => {
         <Typography className="heading">Uploaded Successfully!</Typography>
         <img
           className="uploaded-image"
-          src={
-            !!imageLink
-              ? `${serverOrigin}/${imageLink}`
-              : `${serverOrigin}/api/image/dragDrop.svg`
-          }
+          src={!!imageLink ? `${serverOrigin}/${imageLink}` : `dragDrop.svg`}
           alt="Uploaded"
         />
 
