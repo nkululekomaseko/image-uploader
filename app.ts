@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 const upload = multer({ storage });
 
-// app.use("/api/image", express.static(path.join(__dirname, "images")));
+app.use(express.static(path.join(__dirname, "..", "ui/build")));
 
 const urlToBuffer = async (url: string): Promise<Buffer> => {
   return new Promise((resolve, reject) => {
@@ -34,8 +34,6 @@ const urlToBuffer = async (url: string): Promise<Buffer> => {
     });
   });
 };
-
-app.use(express.static(path.join(__dirname, "..", "ui/build")));
 
 app.get(
   "/api/image/unsplash/:filename",

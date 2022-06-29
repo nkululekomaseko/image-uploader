@@ -6,7 +6,6 @@ import "./ImageLink.css";
 
 const ImageLink = (props: { imageLink: string }): JSX.Element => {
   const { imageLink } = props;
-  console.log(`imageLink: ${!!imageLink}`);
 
   return (
     <>
