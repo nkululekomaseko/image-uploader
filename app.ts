@@ -2,10 +2,10 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import multer from "multer";
 import path from "path";
-import { storage } from "./cloudinary-storage/storage";
+import { storage } from "./utils/cloudinary";
 import client from "https";
-import { v2 as cloudinary } from "cloudinary";
 import { createWriteStream } from "fs";
+import { cloudinary } from "./utils/cloudinary";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -42,19 +42,9 @@ app.get(
   "/api/image/:filename",
   async (request: Request, response: Response) => {
     try {
-      // const imageBuffer: Buffer = await urlToBuffer(
-      //   "https://res.cloudinary.com/nkululeko/image/upload/v1656358320/unsplash/bhivfj6styznkftgffgy.jpg"
-      // );
-
-      const imageRequest = client.get(
-        "https://res.cloudinary.com/nkululeko/image/upload/v1656358320/unsplash/bhivfj6styznkftgffgy.jpg",
-        (resp) => {
-          resp.pipe(file);
-        }
+      const imageBuffer: Buffer = await urlToBuffer(
+        "https://res.cloudinary.com/nkululeko/image/upload/v1656358320/unsplash/bhivfj6styznkftgffgy.jpg"
       );
-      file.close();
-
-      console.log(`imageRequest: ${JSON.stringify(file)}`);
 
       // console.log(
       //   `Repsonse from cloudinary: ${JSON.stringify(
@@ -64,7 +54,8 @@ app.get(
       //   )}`
       // );
       let filename: string = request.params.filename;
-      response.write(file);
+      response.writeHead(200, { "Content-Type": "image/jpg" });
+      response.write(imageBuffer);
       response.end();
     } catch (error) {
       response.status(500).send(error);

@@ -37,7 +37,10 @@ const Upload = (props: {
     setUploadedFile(files[0]);
   }, []);
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: { "image/jpeg": [".jpeg", ".png"] },
+  });
 
   const inputFile = useRef<HTMLInputElement | null>(null);
 
