@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: "image-uploader",
-      script: "/dist/app.js",
+      script: "./dist/app.js",
       watch: false,
       force: true,
       env: {
