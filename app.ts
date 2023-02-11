@@ -6,7 +6,9 @@ import { storage } from "./utils/cloudinary";
 import client from "https";
 import { createWriteStream } from "fs";
 import { cloudinary } from "./utils/cloudinary";
+import * as dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 
