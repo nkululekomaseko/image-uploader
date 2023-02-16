@@ -1,7 +1,7 @@
 <h1 align="center">Image Uploader</h1>
 <div align="center">
   <h3>
-    <a href="https://image-uploader-tool.herokuapp.com">
+    <a href="https://image-uploader.nkululekomaseko.com">
       Demo
     </a>
     <span> | </span>
@@ -24,7 +24,7 @@
 ## Overview
 
 Image uploader is an app developed as a solution to this [DevChallenge](https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx)
-The app can be found here: "https://image-uploader-tool.herokuapp.com"
+The app can be found here: "https://image-uploader.nkululekomaseko.com"
 
 ## Tech Stack
 
